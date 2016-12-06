@@ -5,7 +5,4 @@ public class TreeService {
 
     private static final String JSON = "application/json";
 
-//    @GET
-
-
 }
