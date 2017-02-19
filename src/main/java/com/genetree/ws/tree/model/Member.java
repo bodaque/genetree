@@ -1,17 +1,20 @@
 package com.genetree.ws.tree.model;
 
-import java.util.Date;
-import java.util.List;
-
 import com.genetree.engine.enums.Sex;
 import com.genetree.engine.parsers.JSONParser;
-
 import org.codehaus.jackson.type.TypeReference;
 
-public class Member extends Parent {
+import java.util.Date;
 
+public class Member {
+
+    private String id;
+    private String firstName;
+    private String lastName;
+    private Sex sex;
     private Date birth;
-    private List<Parent> parents;
+    private String motherId;
+    private String fatherId;
 
     public Member() {
     }
@@ -24,24 +27,26 @@ public class Member extends Parent {
         lastName = member.getLastName();
         sex = member.getSex();
         birth = member.getBirth();
-        parents = member.getParents();
+        fatherId = member.getFatherId();
+        motherId = member.getMotherId();
     }
 
     public Member(String id, String firstName, String lastName, Sex sex) {
-        super(id, firstName, lastName, sex);
+        this(id, firstName, lastName, sex, null);
     }
 
     public Member(String id, String firstName, String lastName, Sex sex, Date birth) {
-        this(id, firstName, lastName, sex, birth, null);
+        this(id, firstName, lastName, sex, birth, null, null);
     }
 
-    public Member(String id, String firstName, String lastName, Sex sex, Date birth, List<Parent> parents) {
+    public Member(String id, String firstName, String lastName, Sex sex, Date birth, String fatherId, String motherId) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.sex = sex;
         this.birth = birth;
-        this.parents = parents;
+        this.fatherId = fatherId;
+        this.motherId = motherId;
     }
 
     public void setId(String id) {
@@ -64,10 +69,6 @@ public class Member extends Parent {
         this.birth = birth;
     }
 
-    public void setParents(List<Parent> parents) {
-        this.parents = parents;
-    }
-
     public String getId() {
         return id;
     }
@@ -88,7 +89,19 @@ public class Member extends Parent {
         return birth;
     }
 
-    public List<Parent> getParents() {
-        return parents;
+    public String getMotherId() {
+        return motherId;
+    }
+
+    public void setMotherId(String motherId) {
+        this.motherId = motherId;
+    }
+
+    public String getFatherId() {
+        return fatherId;
+    }
+
+    public void setFatherId(String fatherId) {
+        this.fatherId = fatherId;
     }
 }
