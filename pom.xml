@@ -75,7 +75,7 @@
                 <version>${jetty.version}</version>
                 <configuration>
                     <scanIntervalSeconds>10</scanIntervalSeconds>
-                    <war>${project.basedir}/target/genetree.war</war>
+                    <war>${project.basedir}/target/ts.war</war>
                 </configuration>
             </plugin>
 
@@ -95,7 +95,7 @@
             </plugin>
 
         </plugins>
-        <finalName>TreeService</finalName>
+        <finalName>TS</finalName>
     </build>
     <repositories>
         <repository>

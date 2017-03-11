@@ -1,94 +1,114 @@
 package com.genetree.ws.tree.model;
 
 import java.util.Date;
-import java.util.List;
+
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlRootElement;
 
 import com.genetree.engine.enums.Sex;
 import com.genetree.engine.parsers.JSONParser;
 
-import org.codehaus.jackson.type.TypeReference;
+@XmlRootElement
+public class Member {
 
-public class Member extends Parent {
+    @XmlAttribute
+    private Integer id;
+
+    @XmlAttribute
+    private Integer fatherId;
+
+    @XmlAttribute
+    private Integer spouseId;
+
+    private String firstName;
+
+    private String lastName;
+
+    private Sex sex;
 
     private Date birth;
-    private List<Parent> parents;
 
     public Member() {
     }
 
     public Member(String json) {
-        Member member = JSONParser.fromJSON(new TypeReference<Member>() {
-        }, json);
+        Member member = JSONParser.fromJSON(json, Member.class);
+
         id = member.getId();
+        fatherId = member.getFatherId();
+        spouseId = member.getSpouseId();
+
         firstName = member.getFirstName();
         lastName = member.getLastName();
         sex = member.getSex();
         birth = member.getBirth();
-        parents = member.getParents();
     }
 
-    public Member(String id, String firstName, String lastName, Sex sex) {
-        super(id, firstName, lastName, sex);
-    }
-
-    public Member(String id, String firstName, String lastName, Sex sex, Date birth) {
-        this(id, firstName, lastName, sex, birth, null);
-    }
-
-    public Member(String id, String firstName, String lastName, Sex sex, Date birth, List<Parent> parents) {
+    public Member(Integer id, Integer fatherId, Integer spouseId, String firstName, String lastName, Sex sex,
+            Date birth) {
         this.id = id;
+        this.fatherId = fatherId;
+        this.spouseId = spouseId;
+
         this.firstName = firstName;
         this.lastName = lastName;
         this.sex = sex;
         this.birth = birth;
-        this.parents = parents;
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public void setSex(Sex sex) {
-        this.sex = sex;
-    }
-
-    public void setBirth(Date birth) {
-        this.birth = birth;
-    }
-
-    public void setParents(List<Parent> parents) {
-        this.parents = parents;
-    }
-
-    public String getId() {
+    public Integer getId() {
         return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Integer getFatherId() {
+        return fatherId;
+    }
+
+    public void setFatherId(Integer fatherId) {
+        this.fatherId = fatherId;
+    }
+
+    public Integer getSpouseId() {
+        return spouseId;
+    }
+
+    public void setSpouseId(Integer spouseId) {
+        this.spouseId = spouseId;
     }
 
     public String getFirstName() {
         return firstName;
     }
 
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
     public String getLastName() {
         return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public Sex getSex() {
         return sex;
     }
 
+    public void setSex(Sex sex) {
+        this.sex = sex;
+    }
+
     public Date getBirth() {
         return birth;
     }
 
-    public List<Parent> getParents() {
-        return parents;
+    public void setBirth(Date birth) {
+        this.birth = birth;
     }
 }

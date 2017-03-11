@@ -13,4 +13,5 @@ hs_err_pid*
 
 # IDE files
 .idea/
+target/
 genetree.iml

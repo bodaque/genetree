@@ -9,18 +9,22 @@ public class TreeOperationsImpl implements TreeOperations {
 
     private List<Member> members;
 
-    @Override
-    public void setTree(List<Member> members) {
+    public TreeOperationsImpl(List<Member> members) {
         this.members = members;
     }
 
     @Override
-    public List<Member> getTree() {
-        return members;
+    public Response getTree() {
+        return new Response(members);
     }
 
     @Override
     public Response showMyProfile() {
         return new Response(members.stream().findFirst().get());
+    }
+
+    @Override
+    public Response showProfile(int i) {
+        return new Response(members.get(i));
     }
 }

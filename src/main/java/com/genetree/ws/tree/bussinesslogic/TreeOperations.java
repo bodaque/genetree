@@ -7,10 +7,9 @@ import com.genetree.ws.tree.model.Member;
 
 public interface TreeOperations {
 
-    void setTree(List<Member> members);
-
-    List<Member> getTree();
+    Response getTree();
 
     Response showMyProfile();
 
+    Response showProfile(int i);
 }
